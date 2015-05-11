@@ -4,7 +4,7 @@ plot1 <- function(src = "household_power_consumption.txt")
 {
     # check if the source exists in the current working directory
     if (!file.exists(src))
-        stop(src + " file doesnt exist")
+        stop(paste(src, " file doesnt exist"))
     
     # read data into data frame
     DT <- read.table("household_power_consumption.txt", sep=";", 
@@ -17,7 +17,7 @@ plot1 <- function(src = "household_power_consumption.txt")
     # open PNG device with req width and height
     png("plot1.png", width = 480, height=480)
     
-    hist(DT$Global_active_power, col="RED", main = "Global Active Power",
+    hist(DT$Global_active_power, col="red", main = "Global Active Power",
          xlab = "Global Active Power(kilowatts)")
     
     dev.off()

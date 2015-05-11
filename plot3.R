@@ -19,5 +19,17 @@ plot3 <- function(src = "household_power_consumption.txt")
     
     #plot 3
     
+    dtime <- strptime(paste(DT$Date, DT$Time), "%d/%m/%Y %H:%M:%S")
+        
+    plot(dtime, DT$Global_active_power, xlab="", ylab="Energy sub metering", 
+         type = "n", ylim=c(0,40))
+    
+    points(dtime, DT$Sub_metering_1, type="l", col="black")
+    points(dtime, DT$Sub_metering_2, type="l", xlab="", ylab="Energy sub metering", col="red")
+    points(dtime, DT$Sub_metering_3, type="l", xlab="", ylab="Energy sub metering", col="blue")
+    
+    legend("topright", pch = "-", col = c("black", "red", "blue"), 
+           legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+    
     dev.off()
 }

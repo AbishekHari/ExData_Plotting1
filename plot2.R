@@ -4,7 +4,7 @@ plot2 <- function(src = "household_power_consumption.txt")
 {
     # check if the source exists in the current working directory
     if (!file.exists(src))
-        stop(src + " file doesnt exist")
+        stop(paste(src, " file doesnt exist"))
     
     # read data into data frame
     DT <- read.table("household_power_consumption.txt", sep=";", 
@@ -17,7 +17,8 @@ plot2 <- function(src = "household_power_consumption.txt")
     # open PNG device with req width and height
     png("plot2.png", width = 480, height=480)
     
-    #plot2
+    dtime <- strptime(paste(DT$Date, DT$Time), "%d/%m/%Y %H:%M:%S")
+    plot(dtime, DT$Global_active_power, type="l", xlab="", ylab="Global Active Power(kilowatts)")
     
     dev.off()
 }
